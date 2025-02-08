@@ -21,4 +21,4 @@
 </ul>
 <p>This query finds the cheapest flight with <b>one layover</b>. Our FLIGHTS table (see the graph above) does not include flights with more than one layover. <b>The number of recursive subqueries depends on the number of stops.</b> For example, if we needed to consider three stops, we would need two recursive subqueries.</p>
 <hr>
-<p>This example shows how powerful recursive queries can be. Sometimes, a single recursive query is more efficient than creating complex data models and loading data from the database to solve the problem on the backend. Stored procedures or functions can also be used as an alternative to solve these problems with a single call.</p>
+<p><b>Summary:</b> Recursive SQL queries are powerful tools for solving complex problems, especially those involving hierarchical data. They can often be more efficient than using complex data models or loading large datasets from a database to handle on the backend. In cases where recursion is not the best approach, alternatives like stored procedures or functions can be used to solve the problem with a single call.</p>
