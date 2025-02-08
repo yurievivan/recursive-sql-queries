@@ -3,7 +3,7 @@ WITH RECURSIVE REACHABLE(FromCity, Destination, Route, Full_Price) AS
 (SELECT FromCity, ToCity, CONCAT(FromCity,'->',ToCity), Price
 FROM FLIGHTS
 WHERE FromCity = 'Athens'
-UNION
+UNION ALL
 --(2) Recursive Subquery
 SELECT inn.FromCity, outt.ToCity, CONCAT(inn.Route,' | ',outt.FromCity, ' -> ',outt.ToCity), inn.Full_Price + outt.Price
 FROM REACHABLE inn, FLIGHTS outt
