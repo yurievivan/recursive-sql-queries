@@ -1,7 +1,7 @@
 WITH RECURSIVE R AS (
 --  Initial Subquery
 SELECT 1 AS n
-UNION
+UNION ALL
 -- Recursive Subquery
 SELECT n + 1 AS n 
 FROM R
