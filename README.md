@@ -26,7 +26,7 @@
 <hr>
 <h2 align="center">One of the typical tasks encountered during an interview</h2>
 <hr>
-<p>The database is defined as PostgreSQL, so the solution will be presented for PostgreSQL.</p>
+<p>The database is defined as <b>PostgreSQL</b>, so the solution will be presented for <b>PostgreSQL</b>.</p>
 <b>Description:</b>
 <p>Below are two tables for demonstration: <b>AIRPORT</b> and <b>FLIGHTS</b>. The <b>FLIGHTS</b> table contains data about the flight's departure date (<code>start_date</code>) from the airport and the arrival date (<code>end_date</code>) at the destination airport. It also includes the airport codes for the departure (<code>start_port</code>) and arrival (<code>end_port</code>) airports. Using the airport code from the <b>AIRPORT</b> table, you can retrieve information about the city and country where the airport is located.
 The goal is to find the flight with the minimum duration from <b>New York</b> to <b>Tokyo</b>, considering flights with no more than 2 layovers (i.e., up to 3 flight segments). The result should be displayed as <code>min_flight_duration</code> in minutes. The full schema for the <b>AIRPORT</b> and <b>FLIGHTS</b> tables, along with sample data, can be found in the SQL script at the following link: <a href="https://github.com/yurievivan/recursive-sql-queries/blob/main/Task1/task_1_create_db_airports_db_flights_and_sample_data.sql">GitHub - SQL script</a>.</p>
