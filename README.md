@@ -70,3 +70,5 @@ The goal is to find the flight with the minimum duration from <b>New York</b> to
 </ol>
 <b>Result:</b>
 <p>The query returns the minimum flight duration (<code>min_flight_duration</code>) in minutes between New York and Tokyo, accounting for direct flights and flights with layovers (up to two layovers).</p>
+<b>Extended Query:</b>
+<p>Finally, we can slightly modify the query to see extended information and determine which specific route has the minimum flight duration. You can find the updated query here: <a href="https://github.com/yurievivan/recursive-sql-queries/blob/main/Task1/task_1_recursive_query_for_flights_table_extended_info.sql">GitHub - Extended SQL Query</a>.</p>
