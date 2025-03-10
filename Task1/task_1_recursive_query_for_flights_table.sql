@@ -18,14 +18,15 @@ WITH RECURSIVE REACHABLE AS (
            inn.start_port, 
            outt.end_port, 
            (inn.diff_in_minutes + 
-            (EXTRACT(EPOCH FROM (outt.end_date - outt.start_date)) / 60)::int) AS diff_in_minutes,
+           (EXTRACT(EPOCH FROM (outt.start_date - inn.end_date)) / 60)::int +
+           (EXTRACT(EPOCH FROM (outt.end_date - outt.start_date)) / 60)::int) AS diff_in_minutes,
            inn.num_stops + 1 AS num_stops  -- Increase the number of stops by 1
     FROM REACHABLE inn
-    JOIN flights outt ON inn.end_port = outt.start_port
-    WHERE inn.num_stops < 3  -- Limit on the number of layovers (no more than 2)
+    JOIN flights outt ON inn.end_port = outt.start_port 
+	WHERE inn.end_date <= outt.start_date
 )
 
-SELECT MIN(r.diff_in_minutes) AS min_flight_duration  
+SELECT MIN(r.diff_in_minutes) AS min_flight_duration
 FROM REACHABLE r
 INNER JOIN airport a ON r.end_port = a.port_code
-WHERE a.city = 'Tokyo'
+WHERE a.city = 'Tokyo' AND r.num_stops < 3
