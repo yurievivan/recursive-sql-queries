@@ -19,15 +19,17 @@ WITH RECURSIVE REACHABLE AS (
            inn.start_port, 
            outt.end_port, 
            (inn.diff_in_minutes + 
-            (EXTRACT(EPOCH FROM (outt.end_date - outt.start_date)) / 60)::int) AS diff_in_minutes,
+           (EXTRACT(EPOCH FROM (outt.start_date - inn.end_date)) / 60)::int +
+           (EXTRACT(EPOCH FROM (outt.end_date - outt.start_date)) / 60)::int) AS diff_in_minutes,
            CONCAT(inn.route, ' | ', outt.start_port, '->', outt.end_port) AS route,
            inn.num_stops + 1 AS num_stops  -- Increase the number of stops by 1
     FROM REACHABLE inn
     JOIN flights outt ON inn.end_port = outt.start_port 
+	WHERE inn.end_date <= outt.start_date
 )
 
-SELECT r.* 
+SELECT r.*
 FROM REACHABLE r
 INNER JOIN airport a ON r.end_port = a.port_code
 WHERE a.city = 'Tokyo' AND r.num_stops < 3
-ORDER BY diff_in_minutes;  -- Sorting by flight time
+ORDER BY r.diff_in_minutes
