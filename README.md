@@ -38,7 +38,7 @@ The goal is to find the flight with the minimum duration from <b>New York</b> to
 <b>Solution</b>
 <p>Before writing the query, it's important to note that, in addition to considering both direct flights and flights with no more than two layovers, there is <b>more than one airport</b> in both <b>New York</b> and <b>Tokyo</b>.</p>
 <p>Below is a screenshot of the SQL query solving this task. The SQL query can be found at the following link: <a href="https://github.com/yurievivan/recursive-sql-queries/blob/main/Task1/task_1_recursive_query_for_flights_table.sql">GitHub - SQL query</a>.</p>
-<img width="1000" alt="Recursive SQL Query" src="https://github.com/user-attachments/assets/f78a5dcb-78e4-4b0f-894d-b984c8ab56b7" /><br><br>
+<img width="1000" alt="Recursive SQL Query" src="https://github.com/user-attachments/assets/6bc8282b-b8bd-49bd-9b22-3768477a2e4d" /><br><br>
 <b>Query Explanation:</b>
 <p>This query finds the minimum flight duration from New York to Tokyo, considering both direct flights and flights with layovers (up to two layovers, i.e., up to 3 flight segments).</p>
 <ol>
@@ -58,7 +58,7 @@ The goal is to find the flight with the minimum duration from <b>New York</b> to
     <ul>
       <li>In the second part of the query, recursion is used (through <code>REACHABLE inn</code> and <code>flights outt</code>) to find layovers.</li>
       <li>For each found flight (<code>REACHABLE inn</code>), the next flight (<code>flights outt</code>) is searched, where the arrival airport (<code>inn.end_port</code>) matches the departure airport of the next flight (<code>outt.start_port</code>).</li>
-      <li>The flight duration is recalculated by adding the duration of the connecting flight, and the number of layovers is incremented by 1.</li>
+      <li>The flight duration is recalculated by adding the connecting flight duration and the waiting time at the airport for the next flight. The number of layovers is also incremented by 1.</li>
       <li>A limit is set on the number of layovers — no more than 2 (i.e., up to 3 flight segments), controlled by the condition <code>inn.num_stops < 3</code>.</li>
     </ul>
   </li>
@@ -74,5 +74,5 @@ The goal is to find the flight with the minimum duration from <b>New York</b> to
 <b>Extended Query:</b>
 <p>Finally, we can slightly modify the query to see extended information and determine which specific route has the minimum flight duration. You can find the updated query here: <a href="https://github.com/yurievivan/recursive-sql-queries/blob/main/Task1/task_1_recursive_query_for_flights_table_extended_info.sql">GitHub - Extended SQL Query</a>.</p>
 <p>Below is a screenshot of the query result with extended information.</p>
-<img width="1000" alt="Extended Result" src="https://github.com/user-attachments/assets/c0de7fb2-f491-420c-9c6d-cfc1dc0eb0f2" /><br><br>
+<img width="1000" alt="Extended Result" src="https://github.com/user-attachments/assets/ae5478de-5253-4d00-9f7b-bd14f4a54412" /><br><br>
 <p>As it turns out, the route <b>LGA->IAD | IAD->HND</b> (New York -> Virginia | Virginia -> Tokyo) has the minimum flight duration between <b>New York</b> and <b>Tokyo</b>.</p>
